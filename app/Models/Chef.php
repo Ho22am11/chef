@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject
+class Chef extends Authenticatable implements JWTSubject
 {
     use  HasFactory, Notifiable;
 
@@ -22,10 +22,10 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'name',
         'email',
-        'phone' ,
         'password',
-        'latitude',
-        'longitude',
+        'phone',
+        'gender',
+        'whats',
     ];
 
     /**
@@ -61,5 +61,10 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function getGenderAttribute($value)
+    {
+        return $value ? 'male' : 'female';
     }
 }
