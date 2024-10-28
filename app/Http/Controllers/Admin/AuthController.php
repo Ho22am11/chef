@@ -9,8 +9,13 @@ use App\Models\Admin;
 use Dotenv\Validator as DotenvValidator;
 use Illuminate\Contracts\Validation\Validator as ValidationValidator;
 use Validator;
+
+use App\Traits\ApiResponseTrait;
+
 class AuthController extends Controller
 {
+    use ApiResponseTrait ;
+
     public function register(Request $request){
         
         try{
@@ -38,7 +43,7 @@ class AuthController extends Controller
                 return response()->json(['error' => 'Unauthorized'], 401);
             }
         
-            return $admin ;
+            return $this->ApiResponse($admin , 'admin successfully registered' , 201);
 
         }catch(\Exception $e){
             return response()->json([
