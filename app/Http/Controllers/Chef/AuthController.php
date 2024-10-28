@@ -20,7 +20,7 @@ class AuthController extends Controller
             'last_name' => 'required|string|between:3,15' ,
             'email' => 'required|string|email|max:100|unique:chefs',
             'password' => 'required|string|min:6',
-            'phone' => 'required|numeric' ,
+            'phone' => 'required|numeric|unique:chefs' ,
             'whats_app' => 'required|numeric' ,
         ]);
 

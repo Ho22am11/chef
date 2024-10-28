@@ -18,7 +18,7 @@ class AuthController extends Controller
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|min:6',
-            'phone' => 'required|numeric' ,  //max:15 not work !
+            'phone' => 'required|numeric|unique:users' ,  //max:15 not work !
         ]);
 
          if ($validator->fails()) {
@@ -51,5 +51,47 @@ class AuthController extends Controller
     }
 
 
+    }
+
+
+    public function login(Request $request){
+
+        try{
+        $rules = [
+            "email" => "required",
+            "password" => "required"
+
+        ];
+
+        $validator = Validator::make($request->all(),$rules);
+
+        $login = $request->login;
+        $password = $request->password;
+
+        if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
+                
+            $credentials = ['email' => $login, 'password' => $password];
+        } else {
+           
+            $credentials = ['phone' => $login, 'password' => $password];
+        }
+
+        $token = Auth::guard($request->guard_name)->attempt($credentials);
+
+        if (!$token) {
+            return response()->json(['error' => 'Unauthorized. Invalid credentials'], 401);
+        }
+
+        $user = Auth::guard($request->guard_name)->user();
+
+        $user->token = $token;
+
+        return $this->ApiResponse( $user , 'LOGIN successfully' , 201);
+
+    } catch(\Exception $e){
+        return response()->json([
+        'error' => 'Something went wrong',
+        'message' => $e->getMessage()], 500);
+    }
     }
 }
