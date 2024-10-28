@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Traits\ApiResponseTrait;
-use Dotenv\Validator as DotenvValidator;
-use Illuminate\Contracts\Validation\Validator as ValidationValidator;
 use Validator;
 class AuthController extends Controller
 {
@@ -44,7 +42,7 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
     
-        return $this->ApiResponse($user , 'Chef successfully registered' , 201);
+        return $this->ApiResponse($user , 'user successfully registered' , 201);
 
     } catch(\Exception $e){
         return response()->json([

@@ -6,11 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
-use Dotenv\Validator as DotenvValidator;
-use Illuminate\Contracts\Validation\Validator as ValidationValidator;
-use Validator;
-
 use App\Traits\ApiResponseTrait;
+
+use Validator;
 
 class AuthController extends Controller
 {

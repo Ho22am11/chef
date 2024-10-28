@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('img', 30)->nullable();
             $table->foreignId('chef_id')->references('id')->on('chefs');
-            $table->string('first_name', 15);
-            $table->string('last_name', 15);
             $table->string('bio', 160)->nullable();
             $table->json('language')->nullable();
             $table->text('about', 500)->nullable();
