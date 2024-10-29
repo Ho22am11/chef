@@ -15,11 +15,14 @@ return new class extends Migration
 
         Schema::create('chefs', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name', 15);
+            $table->string('last_name', 15);
             $table->string('email', 100)->unique();
             $table->string('password', 64);
             $table->string('whats_app', 15);
             $table->string('phone', 15);
             $table->boolean('gender')->nullable();
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
