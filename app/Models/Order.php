@@ -9,17 +9,19 @@ class Order extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'service' ,
-        'state' ,
-        'Adults' ,
-        'Teens' ,
-        'Children' ,
-        'Cuisines' ,
+        'service_id' ,
+        'cuisine_id' ,
+        'chef_id' ,
+        'user_id' ,
+        'package_id' ,
+        'adult' ,
+        'teen' ,
+        'children' ,
         'meal' ,
-        'day' ,
-        'Packages' ,
-        'Additional_service' , 
-        'user_id' , 
-        'chef_id' , 
+        'day' , 
+        'addition_service' , 
+        'details' , 
+        'state' , 
+        'cost' , 
     ];
 }

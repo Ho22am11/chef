@@ -20,12 +20,11 @@ class Chef extends Authenticatable implements JWTSubject
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
+        'whats_app',
         'phone',
         'gender',
-        'whats',
     ];
 
     /**

@@ -10,21 +10,22 @@ class ChefProfile extends Model
     use HasFactory;
 
     protected $fillable = [
-        'f_name',
-        'l_name',
-        'BIO',
-        'lang',
+        'img',
+        'chef_id',
+        'first_name',
+        'last_name',
+        'bio',
+        'language',
         'about',
         'experience',
         'learned_at',
-        'guides',
+        'tips',
         'web',
-        'face',
-        'insta',
-        'Twitter',
+        'facebook',
+        'instagram',
+        'twitter',
         'youtube',
         'linkedin',
-        'chef_id' ,
     ];
 
 
