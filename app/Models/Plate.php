@@ -12,7 +12,12 @@ class PlateChef extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customization' , 'name_plate' , 'Appetizer' , 'menus_id'] ;
+    protected $fillable = [
+        'name' ,
+        'category' ,
+        'cuisine_id',
+        'chef_id'
+    ] ;
 
     protected $casts = [
         'Appetizer' => 'array' ,

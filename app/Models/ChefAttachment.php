@@ -10,7 +10,7 @@ class ChefAttachment extends Model
     use HasFactory; 
 
     protected $fillable = [
-        'name',
         'chef_id',
+        'file_name',
     ];
 }

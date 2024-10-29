@@ -10,11 +10,11 @@ class Calendar extends Model
     use HasFactory;
 
     protected $fillable = [
+        'chef_id',
         'day',
-        'day_aval',
+        'available',
         'breakfast',
         'lunch',
         'dinner',
-        'chef_id',
     ];
 }

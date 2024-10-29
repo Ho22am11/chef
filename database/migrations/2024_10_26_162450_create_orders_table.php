@@ -17,10 +17,8 @@ return new class extends Migration
             $table->id();
         
             $table->foreignId('service_id')->constrained();
-            
             $table->foreignId('cuisine_id')->references('id')->on('cuisines');
             $table->foreignId('chef_id')->references('id')->on('chefs');
-
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('package_id')->references('id')->on('packages');
             $table->tinyInteger('adult')->nullable()->default(0);
@@ -32,6 +30,7 @@ return new class extends Migration
             $table->text('details', 500)->nullable();
             $table->enum('state', ["open","inprocess","accepted","paid","canceled","expired"]);
             $table->decimal('cost', 4, 2)->nullable();
+            // datetime
         });
 
         Schema::enableForeignKeyConstraints();

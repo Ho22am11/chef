@@ -10,13 +10,13 @@ class ChefPayment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'currency' ,
+        'chef_id',
+        'currency',
         'bank_name',
-        'account_type' ,
-        'account_number' ,
-        'swift_number' ,
-        'account_branch' ,
-        'iban' ,
-        'chef_id' ,
+        'account_type',
+        'account_number',
+        'SWIFT',
+        'account_branch',
+        'IBAN',
     ];
 }
