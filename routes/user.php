@@ -11,5 +11,6 @@ Route::prefix('auth')->group(function(){
 });
 
 Route::middleware(['api','auth.guard:user'])->group(function(){
-     // all routes
+    Route::post('/logout' , [ AuthController::class , 'logout']);
+    Route::post('/refresh' , [ AuthController::class , 'refresh']);
 }); 
