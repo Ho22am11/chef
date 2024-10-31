@@ -10,3 +10,7 @@ use App\Http\Controllers\Admin\AuthController;
 Route::prefix('auth')->group(function(){
     Route::post('/register' , [ AuthController::class , 'register']);
 });
+
+Route::middleware(['api','auth.guard:admin'])->group(function(){
+    // all routes
+}); 

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Traits\ApiResponseTrait;
 use Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 class AuthController extends Controller
 {
     use ApiResponseTrait ;
@@ -93,5 +95,26 @@ class AuthController extends Controller
         'error' => 'Something went wrong',
         'message' => $e->getMessage()], 500);
     }
+    }
+
+
+
+    public function logout(Request $request){
+
+        $token = $request->bearerToken();
+
+        JWTAuth::setToken($token)->invalidate();
+
+        return $this->ApiResponse( null , 'Logged out successfully' , 201);
+    
+    }
+    public function refresh(Request $request){
+
+        $token = $request->bearerToken();
+        
+        JWTAuth::setToken($token)->refresh();
+
+        return $this->ApiResponse( $token , 'refresh successfully' , 201);
+    
     }
 }

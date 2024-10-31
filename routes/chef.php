@@ -6,9 +6,11 @@ use App\Http\Controllers\Chef\AuthController;
 
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 Route::prefix('auth')->group(function(){
     Route::post('/register' , [ AuthController::class , 'register']);
 });
+
+Route::middleware(['api','auth.guard:chef'])->group(function(){
+    // all routes
+}); 
