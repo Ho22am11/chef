@@ -22,13 +22,13 @@ class CuisineController extends Controller
     }
 
     public function store(Request $request){
-        $validatedData  = $request->validate(['name' => 'required|string|between:2,20']);
+        $validatedData  = $request->validate(['name' => 'required|string|between:2,30']);
         $cuisine = Cuisine::create($validatedData);
         return $this->ApiResponse( $cuisine , 'store cuisine  successfully' , 201 ) ;
 
     }
     public function update(Request $request , $id){
-        $validatedData  = $request->validate(['name' => 'required|string|between:2,20']);
+        $validatedData  = $request->validate(['name' => 'required|string|between:2,30']);
         $cuisine = Cuisine::findOrFail($id);
         $cuisine->update($validatedData);
         return $this->ApiResponse( $cuisine , 'update cuisine  successfully' , 200 ) ;
