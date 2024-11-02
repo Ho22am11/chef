@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('service_id')->constrained();
             $table->foreignId('cuisine_id')->references('id')->on('cuisines');
             $table->foreignId('chef_id')->nullable()->references('id')->on('chefs')->default(null);
-            $table->foreignId('user_id')->references('id')->on('users')->nullable();
+            $table->foreignId('user_id')->nullable()->references('id')->on('users');
             $table->foreignId('package_id')->references('id')->on('packages'); 
             $table->tinyInteger('adult')->nullable()->default(0);
             $table->tinyInteger('teen')->nullable()->default(0);

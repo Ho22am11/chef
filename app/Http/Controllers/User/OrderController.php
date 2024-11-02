@@ -7,6 +7,7 @@ use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponseTrait;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -14,10 +15,25 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request)
     {
+        DB::beginTransaction();
+
+        $request->except('name' , 'email' , 'password' , 'phone' , 'latitude' , 'longitude');
         $validatedData = $request->validated();
         $order = Order::create($validatedData);
 
-        return $this->ApiResponse($order , 'store order successfully' , 201);
+        $token = $request->bearerToken(); 
+
+        if (is_null($token)) {
+           $authController = new AuthController();
+           $user = $authController->register($request);
+           $order->user_id = $user->id ;
+           $order->save();
+           return $this->ApiResponse($order , 'store order successfully' , 201);
+        } else{
+    
+            return $this->ApiResponse($order , 'store order successfully' , 201);
+        }
+        DB::commit();
 
        }
 

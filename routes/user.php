@@ -13,6 +13,6 @@ Route::prefix('auth')->group(function(){
 Route::middleware(['api','auth.guard:user'])->group(function(){
     Route::post('/logout' , [ AuthController::class , 'logout']);
     Route::post('/refresh' , [ AuthController::class , 'refresh']);
-    Route::resource('/orders' , OrderController::class)->except(['index', 'create']);
 
 }); 
+Route::resource('/orders' , OrderController::class)->except(['index', 'create']);

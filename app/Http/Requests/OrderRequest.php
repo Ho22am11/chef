@@ -22,7 +22,7 @@ class OrderRequest extends FormRequest
             'service_id' => 'required|exists:services,id',
             'cuisine_id' => 'required|exists:cuisines,id',
             'chef_id' => 'nullable',
-            'user_id' => 'required|exists:users,id',
+            'user_id' => 'nullable',
             'package_id' => 'required|exists:packages,id',
             'adult' => 'nullable|integer|min:0',
             'teen' => 'nullable|integer|min:0',

@@ -43,8 +43,15 @@ class AuthController extends Controller
         if (!$token) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
+
+        if ($request->login == false){
+            return $user ;
+        }else{
+            return $this->ApiResponse($user , 'user successfully registered' , 201);
+
+        }
     
-        return $this->ApiResponse($user , 'user successfully registered' , 201);
 
     } catch(\Exception $e){
         return response()->json([
