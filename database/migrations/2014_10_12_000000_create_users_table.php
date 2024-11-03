@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password' , 64);
             $table->decimal('latitude' , 10 , 8);
             $table->decimal('longitude' , 11 , 8);
+            $table->string('img')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
