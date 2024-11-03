@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\FeedbackController;
 use App\Http\Controllers\User\OrderController;
 
 Route::prefix('auth')->group(function(){
@@ -16,3 +17,4 @@ Route::middleware(['api','auth.guard:user'])->group(function(){
 
 }); 
 Route::resource('/orders' , OrderController::class)->except(['index', 'create']);
+Route::post('/feedback' , [ FeedbackController::class , 'store']);
