@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('chef_attachments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('chef_id')->references('id')->on('chefs');
-            $table->string('file_name', 30);
+            $table->string('file_name', 50);
+            $table->string('file_type', 10);
         });
 
         Schema::enableForeignKeyConstraints();

@@ -9,7 +9,8 @@ class SaveAttachment{
     public static  function execute(Request $request, $fileKey , $path)
     {
         $file = $request->file($fileKey);
-        $fileName = time().'.'.$file->getClientOriginalExtension();
+        
+        $fileName = time(). "_$fileKey." .$file->getClientOriginalExtension();
 
         $file->storeAs($path, $fileName, 'attechment');
 

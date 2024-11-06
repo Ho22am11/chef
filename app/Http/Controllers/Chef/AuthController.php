@@ -8,7 +8,9 @@ use App\Traits\ApiResponseTrait;
 use Validator;
 use App\Models\Chef;
 use App\Models\ChefProfile;
-
+use App\Actions\SaveAttachment;
+use App\Models\ChefAttachment;
+use Illuminate\Support\Facades\DB;
 class AuthController extends Controller
 {
     use ApiResponseTrait ;
@@ -43,7 +45,18 @@ class AuthController extends Controller
 
         ChefProfile::create(['chef_id' => $chef->id ]);
 
-
+        $files = ['cv' , 'passport'] ;
+        foreach($files as $file){
+            $path='chef/'.$file ;
+            $datastore = SaveAttachment::execute($request , $file , $path);
+            $datastore['chef_id'] = $chef->id;
+            ChefAttachment::create([
+                'chef_id' => $chef->id,
+                'file_name' => $datastore['img'],
+                'file_type' => $file ,
+            ]); 
+        }
+        
         $token = auth()->guard('chef')->attempt($request->only('email' , 'password'));
 
         $chef->token = $token ;
@@ -53,10 +66,11 @@ class AuthController extends Controller
         }
     
         return $this->ApiResponse($chef , 'Chef successfully registered' , 201);
-    } catch(\Exception $e){
+       } catch(\Exception $e){
         return response()->json([
         'error' => 'Something went wrong',
         'message' => $e->getMessage()], 500);
-    }
+     }
+
     }
 }

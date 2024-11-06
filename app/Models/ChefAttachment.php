@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ChefAttachment extends Model
 {
     use HasFactory; 
+    public $timestamps = false ;
 
     protected $fillable = [
         'chef_id',
         'file_name',
+        'file_type',
     ];
 }
