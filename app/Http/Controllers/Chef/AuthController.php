@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Traits\ApiResponseTrait;
 use Validator;
 use App\Models\Chef;
+use App\Models\ChefProfile;
 
 class AuthController extends Controller
 {
@@ -37,6 +38,10 @@ class AuthController extends Controller
             'gender' => $request->gender ,
             'password' => bcrypt($request->password),
         ]);
+
+
+
+        ChefProfile::create(['chef_id' => $chef->id ]);
 
 
         $token = auth()->guard('chef')->attempt($request->only('email' , 'password'));
