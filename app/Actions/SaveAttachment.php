@@ -10,7 +10,7 @@ class SaveAttachment{
     {
         $file = $request->file($fileKey);
         
-        $fileName = time(). "_$fileKey." .$file->getClientOriginalExtension();
+        $fileName = uniqid(). "_$fileKey." .$file->getClientOriginalExtension();
 
         $file->storeAs($path, $fileName, 'attechment');
 
