@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
         
         Schema::create('calendars', function (Blueprint $table) {
             $table->id();
@@ -23,7 +22,6 @@ return new class extends Migration
             $table->boolean('dinner')->default(true);
         });
 
-        Schema::enableForeignKeyConstraints();
     }
 
     /**

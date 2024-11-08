@@ -49,7 +49,6 @@ class OrderRequest extends FormRequest
     {
         $errors = $validator->errors();
 
-        // إعادة استجابة JSON مع الأخطاء وكود الحالة 400
         throw new HttpResponseException(response()->json([
             'success' => false,
             'message' => 'Validation errors occurred',

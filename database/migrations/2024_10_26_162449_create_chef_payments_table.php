@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
 
         Schema::create('chef_payments', function (Blueprint $table) {
             $table->id();
@@ -25,7 +24,6 @@ return new class extends Migration
             $table->string('IBAN', 34)->nullable();
         });
 
-        Schema::enableForeignKeyConstraints();
     }
 
     /**

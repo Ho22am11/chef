@@ -9,6 +9,8 @@ class ChefPayment extends Model
 { 
     use HasFactory;
 
+    public $timestamps = false ;
+
     protected $fillable = [
         'chef_id',
         'currency',
@@ -20,3 +22,4 @@ class ChefPayment extends Model
         'IBAN',
     ];
 }
+ 
