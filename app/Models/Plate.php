@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\MenusChef;
 
 
-class PlateChef extends Model
+class Plate extends Model
 {
     use HasFactory;
+
+    public $timestamps = false ;
+
 
     protected $fillable = [
         'name' ,
@@ -19,10 +22,5 @@ class PlateChef extends Model
         'chef_id'
     ] ;
 
-    protected $casts = [
-        'Appetizer' => 'array' ,
-    ] ;
-
-    
-
+  
 }
