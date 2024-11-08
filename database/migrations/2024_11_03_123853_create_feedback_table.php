@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('chef_attachments', function (Blueprint $table) {
+        Schema::create('feedback', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('chef_id')->references('id')->on('chefs');
-            $table->string('file_name', 50);
-            $table->string('file_type', 10);
+            $table->string('frist_name' , 10);
+            $table->string('last_name' , 10 );
+            $table->string('phone' , 15 );
+            $table->string('email' , 100);
+            $table->text('message');
+            $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('chef_attachments');
+        Schema::dropIfExists('feedback');
     }
 };

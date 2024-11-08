@@ -9,6 +9,8 @@ class ChefProfile extends Model
 {  
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'img',
         'chef_id',
@@ -31,6 +33,6 @@ class ChefProfile extends Model
 
 
     protected $casts = [
-        'lang' => 'array' ,
+        'language' => 'array' ,
     ] ;
 }
