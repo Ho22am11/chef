@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Calendar extends Model
 {
     use HasFactory;
+    public $timestamps = false ;
+
 
     protected $fillable = [
         'chef_id',
@@ -16,5 +18,5 @@ class Calendar extends Model
         'breakfast',
         'lunch',
         'dinner',
-    ];
+    ];  
 }
