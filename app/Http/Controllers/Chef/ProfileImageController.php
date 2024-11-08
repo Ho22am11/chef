@@ -23,7 +23,6 @@ class ProfileImageController extends Controller
 
         $path = 'chef/plates_images';
         $filePaths = [];
-        $filePaths = $data['img'];
         
         if ($request->hasFile('img_plates')) {
             $files = $request->file('img_plates');
@@ -33,8 +32,14 @@ class ProfileImageController extends Controller
                 $fileName = uniqid()."_plate." . $file->getClientOriginalExtension();
                 $file->storeAs($path, $fileName, 'attechment');
                 $filePaths[] = $path . '/' . $fileName;
+                ChefAttachment::create([
+                    'chef_id' => $request->chef_id,
+                    'file_name' => $fileName ,
+                    'file_type' => 'plates' ,
+                ]);
             }
         }
+        
         return $this->ApiResponse($filePaths , 'store images successfuly' , 201);
     
     }
