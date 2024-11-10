@@ -11,21 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
         
-        Schema::create('chef_menus', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->foreignId('chef_id')->references('id')->on('chefs');
             $table->string('name', 20);
-            $table->string('cuisine', 20);
+            $table->foreignId('cuisine_id')->references('id')->on('cuisines');
             $table->tinyInteger('min')->default(0);
             $table->tinyInteger('max')->default(0);
-            $table->decimal('average_price', 5, 2);
+            $table->decimal('average_price_two_guests', 5, 2);
+            $table->decimal('average_price_six_guests', 5, 2);
+            $table->decimal('average_price_twenty_guests', 5, 2);
       
 
         });
 
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('chef_menus');
+        Schema::dropIfExists('menus');
     }
 };

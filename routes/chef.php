@@ -7,6 +7,7 @@ use App\Http\Controllers\Chef\CalendarController;
 use App\Http\Controllers\Chef\ChefloctionController;
 use App\Http\Controllers\Chef\ChefPaymentController;
 use App\Http\Controllers\Chef\ChefProfileController;
+use App\Http\Controllers\Chef\MenuController;
 use App\Http\Controllers\Chef\PlateController;
 use App\Http\Controllers\Chef\ProfileImageController;
 
@@ -21,4 +22,5 @@ Route::middleware(['api','auth.guard:chef'])->group(function(){
     Route::resource('/calendars', CalendarController::class);
     Route::resource('/payments', ChefPaymentController::class);
     Route::resource('/plates', PlateController::class);
+    Route::resource('/menus', MenuController::class);
 }); 

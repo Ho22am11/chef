@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 use App\Models\MenusChef;
 
 
@@ -21,6 +20,10 @@ class Plate extends Model
         'cuisine_id',
         'chef_id'
     ] ;
+
+    public function menus(){
+        return $this->belongsToMany('App\Models\Menu' , 'menu_plate');
+    }
 
   
 }
