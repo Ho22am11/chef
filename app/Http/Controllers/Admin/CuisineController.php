@@ -36,7 +36,7 @@ class CuisineController extends Controller
 
     public function destroy($id){
         Cuisine::destroy($id);
-        return $this->ApiResponse(null, 'delete cuisine successfully' , 204 ) ;
+        return $this->ApiResponse(null, 'delete cuisine successfully' , 200 ) ;
 
     }
 }

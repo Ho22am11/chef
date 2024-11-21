@@ -37,7 +37,7 @@ class ServiceController extends Controller
 
     public function destroy($id){
         Service::destroy($id);
-        return $this->ApiResponse(null, 'delete service  successfully' , 204 ) ;
+        return $this->ApiResponse(null, 'delete service  successfully' , 200 ) ;
 
     }
 

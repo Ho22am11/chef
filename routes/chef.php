@@ -19,6 +19,7 @@ Route::prefix('auth')->group(function(){
 Route::middleware(['api','auth.guard:chef'])->group(function(){
     Route::resource('/profiles' , ChefProfileController::class);
     Route::resource('/upload_profile_images', ProfileImageController::class);
+    Route::post('upload_profile' , [ProfileImageController::class , 'update'] );
     Route::resource('/loctions', ChefloctionController::class);
     Route::resource('/calendars', CalendarController::class);
     Route::resource('/payments', ChefPaymentController::class);

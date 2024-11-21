@@ -15,8 +15,7 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request)
     {
-        DB::beginTransaction();
-
+        try{
         $request->except('name' , 'email' , 'password' , 'phone' , 'latitude' , 'longitude');
         $validatedData = $request->validated();
         $order = Order::create($validatedData);
@@ -33,17 +32,20 @@ class OrderController extends Controller
     
             return $this->ApiResponse($order , 'store order successfully' , 201);
         }
-        DB::commit();
+        }catch(\Exception $e){
+            return response()->json([
+                'error' => 'Something went wrong',
+                'message' => $e->getMessage()], 500);
+        }
 
        }
 
    
     public function show($id)
     {
-        $order = Order::findOrFail($id);
+        $order = Order::find($id);
+        
         return $this->ApiResponse($order , 'show order successfully' , 200);
-
-
     }
 
     public function edit($id)
@@ -70,6 +72,6 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         $order->update(['state' => 'canceled' ]);
 
-        return $this->ApiResponse(null , 'The order has been cancelled' ,204 );
+        return $this->ApiResponse( $order , 'The order has been cancelled' ,200 );
     }
 }

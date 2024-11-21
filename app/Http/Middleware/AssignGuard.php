@@ -22,7 +22,7 @@ class AssignGuard
         }
 
     return response()->json([
-        'error' => 'Unauthorized',
+        'error' => 'Forbidden',
         'massege' => 'You are not an '.$guard
     ], 403);
     }

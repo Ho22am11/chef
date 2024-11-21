@@ -43,7 +43,7 @@ class MenuController extends Controller
 
     public function destroy($id){
          Menu::destroy($id);
-         return $this->ApiResponse(null  , 'delete menu successfully' , 204 );
+         return $this->ApiResponse(null  , 'delete menu successfully' , 200 );
 
     }
 }

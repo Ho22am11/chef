@@ -37,6 +37,6 @@ class PlateController extends Controller
     public function destroy($id)
     {
         Plate::destroy($id);
-        return $this->ApiResponse(null , 'update successfully plate' , 204);
+        return $this->ApiResponse(null , 'update successfully plate' , 200);
     }
 }

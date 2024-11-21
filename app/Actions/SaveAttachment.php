@@ -11,6 +11,7 @@ class SaveAttachment{
         $file = $request->file($fileKey);
         
         $fileName = uniqid(). "_$fileKey." .$file->getClientOriginalExtension();
+        
 
         $file->storeAs($path, $fileName, 'attechment');
 

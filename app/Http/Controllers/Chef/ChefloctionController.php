@@ -10,8 +10,6 @@ class ChefloctionController extends Controller
 {
     use  ApiResponseTrait ;
     public function store(Request $request){
-
-      
         $chefLocation =  ChefLocation::create($request->all());
         return $this->ApiResponse($chefLocation , 'store loction succuessfuly' , 201) ;
     }
