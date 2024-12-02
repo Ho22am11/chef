@@ -27,6 +27,7 @@ class OrderController extends Controller
            $user = $authController->register($request);
            $order->user_id = $user->id ;
            $order->save();
+           $order->token = $user->token ;
            return $this->ApiResponse($order , 'store order successfully' , 201);
         } else{
     

@@ -45,7 +45,7 @@ class AuthController extends Controller
         }
 
 
-        if ($request->login == false){
+        if (isset($request->login) ){
             return $user ;
         }else{
             return $this->ApiResponse($user , 'user successfully registered' , 201);

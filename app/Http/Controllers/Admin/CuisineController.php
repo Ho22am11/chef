@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cuisine;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponseTrait;
+use Exception;
 
 class CuisineController extends Controller
 {
@@ -16,8 +17,14 @@ class CuisineController extends Controller
     }
 
     public function show($id){
+        try{
         $cuisine = Cuisine::findOrFail($id);
         return $this->ApiResponse($cuisine , 'get cuisine has'.$id.' successfully' , 200 ) ;
+        }catch(Exception $e){
+            return response()->json([
+                'error' => 'Something went wrong',
+                'message' => $e->getMessage()], 400);
+        }
 
     }
 
@@ -28,10 +35,16 @@ class CuisineController extends Controller
 
     }
     public function update(Request $request , $id){
+        try{
         $validatedData  = $request->validate(['name' => 'required|string|between:2,30']);
         $cuisine = Cuisine::findOrFail($id);
         $cuisine->update($validatedData);
         return $this->ApiResponse( $cuisine , 'update cuisine  successfully' , 200 ) ;
+        }catch(Exception $e){
+            return response()->json([
+                'error' => 'Something went wrong',
+                'message' => $e->getMessage()], 400);
+        }
     }
 
     public function destroy($id){
