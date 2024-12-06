@@ -20,12 +20,20 @@ class PackageController extends Controller
         try{
         $Package = Package::findOrFail($id);
         return $this->ApiResponse($Package , 'get Package has '.$id.' successfully' , 200 ) ;
+<<<<<<< HEAD
         }
         catch(Exception $e){
             return response()->json([
                 'error' => 'Something went wrong',
                 'message' => $e->getMessage()], 500);
         }
+=======
+    }catch(Exception $e){
+        return response()->json([
+            'error' => 'Something went wrong',
+            'message' => $e->getMessage()], 400);
+    }
+>>>>>>> 49f3591e9d9f90a7a70e7092f8b43591490421a0
 
     }
 
@@ -48,6 +56,7 @@ class PackageController extends Controller
         $Package = Package::findOrFail($id);
         $Package->update($validatedData);
         return $this->ApiResponse( $Package , 'update Package  successfully' , 200 ) ;
+<<<<<<< HEAD
        }
        catch(Exception $e){
         return response()->json([
@@ -55,6 +64,13 @@ class PackageController extends Controller
             'message' => $e->getMessage()], 500);
        }
 
+=======
+    }catch(Exception $e){
+        return response()->json([
+            'error' => 'Something went wrong',
+            'message' => $e->getMessage()], 400);
+    }
+>>>>>>> 49f3591e9d9f90a7a70e7092f8b43591490421a0
     }
 
     public function destroy($id){
