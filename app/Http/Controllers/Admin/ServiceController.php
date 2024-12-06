@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponseTrait;
-
+use Exception;
 
 class ServiceController extends Controller
 {
@@ -17,8 +17,16 @@ class ServiceController extends Controller
     }
 
     public function show($id){
+        try {
+
         $service = Service::findOrFail($id);
-        return $this->ApiResponse($service , 'get service has'.$id.' successfully' , 200 ) ;
+        return $this->ApiResponse($service , 'get service has id '.$id.' is successfully' , 200 ) ;
+
+        }catch(Exception $e){
+            return response()->json([
+                'error' => 'Something went wrong',
+                'message' => $e->getMessage()], 500);
+        }
 
     }
 
@@ -29,10 +37,17 @@ class ServiceController extends Controller
 
     }
     public function update(Request $request , $id){
+        try{
         $validatedData  = $request->validate(['name' => 'required|string|between:2,20']);
         $service = Service::findOrFail($id);
         $service->update($validatedData);
         return $this->ApiResponse( $service , 'update service  successfully' , 200 ) ;
+        }
+        catch(Exception $e){
+            return response()->json([
+                'error' => 'Something went wrong',
+                'message' => $e->getMessage()], 500);
+        }
     }
 
     public function destroy($id){

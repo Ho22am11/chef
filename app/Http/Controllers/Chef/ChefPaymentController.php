@@ -7,6 +7,8 @@ use App\Http\Requests\ChefPaymentRequest;
 use App\Models\ChefPayment;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponseTrait ;
+use Exception;
+
 class ChefPaymentController extends Controller
 {
     use ApiResponseTrait ;
@@ -17,8 +19,14 @@ class ChefPaymentController extends Controller
     }
 
     public function show($id){
-        $payment = ChefPayment::findOrfail($id);
+        try{
+        $payment = ChefPayment::where('chef_id',$id)->get();
         return $this->ApiResponse($payment , 'show payment information successfuly' , 200);
+        }catch(Exception $e){
+            return response()->json([
+                'error' => 'Something went wrong',
+                'message' => $e->getMessage()], 500);
+        }
     }
 
     public function update(ChefPaymentRequest $request , $id){

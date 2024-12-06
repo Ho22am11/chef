@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Package;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponseTrait;
+use Exception;
 
 class PackageController extends Controller
 {
@@ -16,8 +17,15 @@ class PackageController extends Controller
     }
 
     public function show($id){
+        try{
         $Package = Package::findOrFail($id);
         return $this->ApiResponse($Package , 'get Package has '.$id.' successfully' , 200 ) ;
+        }
+        catch(Exception $e){
+            return response()->json([
+                'error' => 'Something went wrong',
+                'message' => $e->getMessage()], 500);
+        }
 
     }
 
@@ -32,18 +40,26 @@ class PackageController extends Controller
 
     }
     public function update(Request $request , $id){
+        try{
         $validatedData  = $request->validate([
             'name' => 'required|string|between:2,30',
-            'average' => 'required|numeric'
+            'average' => 'required'
         ]);
         $Package = Package::findOrFail($id);
         $Package->update($validatedData);
         return $this->ApiResponse( $Package , 'update Package  successfully' , 200 ) ;
+       }
+       catch(Exception $e){
+        return response()->json([
+            'error' => 'Something went wrong',
+            'message' => $e->getMessage()], 500);
+       }
+
     }
 
     public function destroy($id){
         Package::destroy($id);
-        return $this->ApiResponse(null, 'delete Package successfully' , 204 ) ;
+        return $this->ApiResponse(null, 'delete Package successfully' , 200 ) ;
 
     }
 }

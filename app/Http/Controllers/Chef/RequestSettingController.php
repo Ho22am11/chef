@@ -9,10 +9,7 @@ use App\Traits\ApiResponseTrait ;
 class RequestSettingController extends Controller
 {
     use ApiResponseTrait ;
-    public function index(){
-        $request_setting = RequestSetting::all();
-        return  $this->ApiResponse($request_setting , 'get all  rquest successfully' , 201) ;
-    }
+   
     public function store(Request $request){
         $request_setting = RequestSetting::create($request->all());
         return  $this->ApiResponse($request_setting , 'store rquest successfully' , 201) ;

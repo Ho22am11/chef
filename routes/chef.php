@@ -21,7 +21,9 @@ Route::middleware(['api','auth.guard:chef'])->group(function(){
     Route::resource('/upload_profile_images', ProfileImageController::class);
     Route::post('upload_profile' , [ProfileImageController::class , 'update'] );
     Route::resource('/loctions', ChefloctionController::class);
-    Route::resource('/calendars', CalendarController::class);
+    Route::post('/calendars/{id}/edit', [CalendarController::class, 'edit']);
+    Route::resource('/calendars', CalendarController::class)->except('show');
+    Route::post('/calendars_show' , [CalendarController::class , 'show_data'] );
     Route::resource('/payments', ChefPaymentController::class);
     Route::resource('/plates', PlateController::class);
     Route::resource('/menus', MenuController::class);

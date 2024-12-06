@@ -31,10 +31,7 @@ class MenuController extends Controller
         $menu = Menu::findOrFail($id);
         $menu->update($request->all());
 
-        // sync accept only array but attach accept array and json 
-        $plateIds = collect($request->plates)->pluck('plate_id')->toArray();
-
-        $menu->plates()->sync($plateIds);
+        $menu->plates()->sync($request->plates);
 
         return $this->ApiResponse($menu->load('plates') , 'update menu successfully' , 200 );
         

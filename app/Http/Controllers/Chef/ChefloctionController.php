@@ -21,8 +21,15 @@ class ChefloctionController extends Controller
     }
 
     public function update(Request $request , $id){
+        try{
         $chefLocation =  ChefLocation::where('chef_id' ,$id)->first();
         $chefLocation->update($request->all()); 
         return $this->ApiResponse($chefLocation , 'get loction succuessfuly' , 200 ) ;
+        }
+        catch(\Exception $e){
+            return response()->json([
+                'error' => 'Something went wrong',
+                'message' => $e->getMessage()], 500);
+        }
     }
 }
