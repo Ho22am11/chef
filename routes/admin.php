@@ -20,3 +20,4 @@ Route::middleware(['api','auth.guard:admin'])->group(function(){
     Route::resource('cuisines' , CuisineController::class )->except(['index','create', 'edit']);
     Route::resource('packages' , PackageController::class )->except(['index','create', 'edit']);
 }); 
+

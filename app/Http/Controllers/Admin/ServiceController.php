@@ -17,17 +17,7 @@ class ServiceController extends Controller
     }
 
     public function show($id){
-<<<<<<< HEAD
-        try {
 
-        $service = Service::findOrFail($id);
-        return $this->ApiResponse($service , 'get service has id '.$id.' is successfully' , 200 ) ;
-
-        }catch(Exception $e){
-            return response()->json([
-                'error' => 'Something went wrong',
-                'message' => $e->getMessage()], 500);
-=======
         try{
         $service = Service::findOrFail($id);
         return $this->ApiResponse($service , 'get service has'.$id.' successfully' , 200 ) ;
@@ -35,7 +25,6 @@ class ServiceController extends Controller
             return response()->json([
                 'error' => 'Something went wrong',
                 'message' => $e->getMessage()], 400);
->>>>>>> 49f3591e9d9f90a7a70e7092f8b43591490421a0
         }
 
     }
@@ -52,20 +41,11 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
         $service->update($validatedData);
         return $this->ApiResponse( $service , 'update service  successfully' , 200 ) ;
-<<<<<<< HEAD
-        }
-        catch(Exception $e){
-            return response()->json([
-                'error' => 'Something went wrong',
-                'message' => $e->getMessage()], 500);
-        }
-=======
        }catch(Exception $e){
         return response()->json([
             'error' => 'Something went wrong',
             'message' => $e->getMessage()], 400);
        }
->>>>>>> 49f3591e9d9f90a7a70e7092f8b43591490421a0
     }
 
     public function destroy($id){

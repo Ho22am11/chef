@@ -20,7 +20,8 @@ return new class extends Migration
             $table->bigInteger('receiver_id');
             $table->string('receiver_type', 5);
             $table->text('content', 500);
-            // timestamp
+            $table->timestamps();
+            
         });
 
         Schema::enableForeignKeyConstraints();
