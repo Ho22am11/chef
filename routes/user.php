@@ -20,7 +20,7 @@ Route::middleware(['api','auth.guard:user'])->group(function(){
     Route::post('/date_update/{id}' , [ DataController::class , 'update']);
 
 }); 
-Route::resource('/orders' , OrderController::class)->except(['index', 'create']);
+Route::resource('/orders' , OrderController::class)->except(['create']);
 Route::post('/feedback' , [ FeedbackController::class , 'store']);
 
 Route::post('/message', [MessageController::class, 'send']);

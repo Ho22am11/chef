@@ -20,7 +20,6 @@ return new class extends Migration
             $table->enum('state', ["pending","accepted","rejected"]);
             $table->foreignId('menu_id')->references('id')->on('chef_menus');
             $table->decimal('price', 5, 2);
-            // datetime
         });
 
         Schema::enableForeignKeyConstraints();

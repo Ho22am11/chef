@@ -24,11 +24,15 @@ return new class extends Migration
             $table->tinyInteger('adult')->nullable()->default(0);
             $table->tinyInteger('teen')->nullable()->default(0);
             $table->tinyInteger('children')->nullable()->default(0);
-            $table->enum('meal', ["breakfast","lunch","dinner"]);
+            $table->enum('breakfast_status', ['0', '1'])->nullable();
+            $table->enum('dinner_status', ['0', '1'])->nullable();
+            $table->enum('lunch_status', ['0', '1'])->nullable();
+            $table->time('from_time' , 0 ); 
+            $table->time('to_time' , 0 );
             $table->date('day');
-            $table->enum('addition_service', ["waiter","bartender","other"]);
+            $table->enum('addition_service', [ 0, 1, 2])->nullable();
             $table->text('details', 500)->nullable();
-            $table->enum('state', ["open","inprocess","accepted","paid","canceled","expired"]);
+            $table->enum('state', [1, 2, 3, 4, 5, 6]);
             $table->decimal('cost', 4, 2)->nullable();
             $table->timestamps();
             $table->softDeletes(); 

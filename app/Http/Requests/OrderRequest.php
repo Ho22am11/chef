@@ -27,19 +27,16 @@ class OrderRequest extends FormRequest
             'adult' => 'nullable|integer|min:0',
             'teen' => 'nullable|integer|min:0',
             'children' => 'nullable|integer|min:0',
-            'meal' => [
-                'required',
-                Rule::in(['breakfast', 'lunch', 'dinner']),
-            ],
+            'breakfast_status' => 'nullable' ,
+            'lunch_status' => 'nullable' ,
+            'dinner_status' => 'nullable' ,
             'day' => 'required|date',
-            'addition_service' => [
-                'required',
-                Rule::in(['waiter', 'bartender', 'other']),
-            ],
+            'addition_service' =>'nullable' ,                            
+            'from_time' => 'required' ,
+            'to_time' => 'required' ,
             'details' => 'nullable|string|max:500',
             'state' => [
                 'required',
-                Rule::in(['open', 'inprocess', 'accepted', 'paid', 'canceled', 'expired']),
             ],
             'cost' => 'nullable',
         ];
