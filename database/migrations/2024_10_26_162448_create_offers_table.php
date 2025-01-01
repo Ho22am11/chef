@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('chef_id')->references('id')->on('chefs');
             $table->foreignId('order_id')->references('id')->on('orders');
-            $table->enum('state', ["pending","accepted","rejected"]);
-            $table->foreignId('menu_id')->references('id')->on('chef_menus');
+            $table->enum('state', [ 1 , 2 , 3 ]);
+            $table->foreignId('menu_id')->references('id')->on('menus');
             $table->decimal('price', 5, 2);
+            $table->timestamps();
+
         });
 
         Schema::enableForeignKeyConstraints();

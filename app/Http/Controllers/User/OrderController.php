@@ -29,27 +29,27 @@ class OrderController extends Controller
     public function store(OrderRequest $request)
     {
         try{
-        $token = $request->bearerToken(); 
-        $user = JWTAuth::parseToken()->authenticate();
+            $token = $request->bearerToken();
 
-        $request->except('name' , 'email' , 'password' , 'phone' , 'latitude' , 'longitude');
-        $validatedData = $request->validated();
-        $validatedData['user_id']= $user->id;
-        $order = Order::create($validatedData);
-
-        
-
-        if (is_null($token)) {
-           $authController = new AuthController();
-           $new_user = $authController->register($request);
-           $order->user_id = $new_user->id ;
-           $order->save();
-           $order->token = $new_user->token ;
-           return $this->ApiResponse($order , 'store order successfully' , 201);
-        } else{
+            if (is_null($token)) {
+                // لو مفيش توكن، سجل المستخدم الجديد
+                $authController = new AuthController();
+                $new_user = $authController->register($request);
     
-            return $this->ApiResponse($order , 'store order successfully' , 201);
-        }
+                $request->merge(['user_id' => $new_user->id]);
+                $order = Order::create($request->except(['name', 'email', 'password', 'phone', 'latitude', 'longitude']));
+                $order->token = $new_user->token;
+    
+                return $this->ApiResponse($order, 'Store order successfully', 201);
+            }
+    
+            $user = JWTAuth::parseToken()->authenticate();
+    
+            $validatedData = $request->validated();
+            $validatedData['user_id'] = $user->id;
+            $order = Order::create($validatedData);
+    
+            return $this->ApiResponse($order, 'Store order successfully', 201);
         }catch(\Exception $e){
             return response()->json([
                 'error' => 'Something went wrong',
